@@ -3,8 +3,8 @@ import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const User = db.define(
-  "user",
+const Users = db.define(
+  "employee",
   {
     uuid: {
       type: DataTypes.STRING,
@@ -30,14 +30,14 @@ const User = db.define(
         isEmail: true,
       },
     },
-    password: {
+    nip: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    role: {
+    position: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -50,4 +50,4 @@ const User = db.define(
   }
 );
 
-export default User;
+export default Users;
