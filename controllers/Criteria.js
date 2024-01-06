@@ -1,4 +1,5 @@
 import Criteria from "../models/CriteriaModel.js";
+import EmployeeCriteria from "../models/EmployeeCriteriaModel.js";
 
 export const getCriterias = async (req, res) => {
   try {
@@ -17,6 +18,7 @@ export const createCriteria = async (req, res) => {
       weight: weight,
       type: type,
     });
+
     res.status(201).json({ message: "Criteria created", result: result });
   } catch (error) {
     res.status(400).json({ message: "Server Error" });
@@ -26,17 +28,10 @@ export const updateCriteria = async (req, res) => {
   const { dataWeight } = req.body;
 
   try {
-    for (const weightData of dataWeight) {
-      const { id, newWeight } = weightData;
-
-      // Update the criteria with the new weight
+    for (let id = 0; id <= 7; id++) {
       await Criteria.update(
-        { weight: newWeight },
-        {
-          where: {
-            id: id,
-          },
-        }
+        { weight: dataWeight[id] },
+        { where: { id: id + 1 } }
       );
     }
 
